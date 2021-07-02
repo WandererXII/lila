@@ -3,7 +3,7 @@ package lila.game
 import org.joda.time.DateTime
 import scalaz.Validation.FlatMap._
 
-import shogi.format.{ FEN, pgn => shogiPgn }
+import shogi.format.{ FEN, kif => shogiPgn }
 
 object Rewind {
 
@@ -24,8 +24,7 @@ object Rewind {
       .flatMap(_.valid) map { replay =>
       val rewindedGame = replay.state
       val color        = game.turnColor
-      val prevTurn     = game.shogi.fullMoveNumber
-      //val prevTurn     = if(color == shogi.Color.Gote) game.shogi.fullMoveNumber else game.shogi.fullMoveNumber -1
+      val prevTurn     = game.shogi.turnNumber
       val refundPeriod = (game.clockHistory map (_.turnIsPresent(color, prevTurn))).getOrElse(false)
       val newClock = game.clock.map(_.takeback(refundPeriod)) map { clk =>
         game.clockHistory.flatMap(_.last(color)).fold(clk) { t =>

@@ -1,6 +1,6 @@
 package lila.study
 
-import shogi.format.pgn.Tags
+import shogi.format.kif.Tags
 import shogi.Hands
 import shogi.format.{ FEN, Forsyth }
 import shogi.variant.Variant
@@ -76,7 +76,7 @@ final private class ChapterMaker(
     } match {
       case Some(sit) =>
         Node.Root(
-          ply = sit.turns,
+          ply = sit.moveNumber,
           fen = FEN(Forsyth.>>(sit)),
           check = sit.situation.check,
           clock = none,

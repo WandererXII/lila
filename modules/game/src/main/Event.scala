@@ -51,7 +51,7 @@ object Event {
       extra ++ Json
         .obj(
           "fen"   -> fen,
-          "ply"   -> state.turns,
+          "ply"   -> state.plies,
           "dests" -> PossibleMoves.oldJson(possibleMoves)
         )
         .add("clock" -> clock.map(_.data))
@@ -105,7 +105,7 @@ object Event {
       Move(
         orig = move.orig,
         dest = move.dest,
-        san = shogi.format.pgn.Dumper(move),
+        san = shogi.format.kif.Dumper(move),
         fen = shogi.format.Forsyth.exportSituation(situation),
         check = situation.check,
         promotion = move.promotion,
@@ -151,7 +151,7 @@ object Event {
       Drop(
         role = drop.piece.role,
         pos = drop.pos,
-        san = shogi.format.pgn.Dumper(drop),
+        san = shogi.format.kif.Dumper(drop),
         fen = shogi.format.Forsyth.exportSituation(situation),
         check = situation.check,
         state = state,
@@ -346,7 +346,7 @@ object Event {
 
   case class State(
       color: Color,
-      turns: Int,
+      plies: Int,
       status: Option[Status],
       winner: Option[Color],
       senteOffersDraw: Boolean,
@@ -357,7 +357,7 @@ object Event {
       Json
         .obj(
           "color" -> color,
-          "turns" -> turns
+          "plies" -> plies
         )
         .add("status" -> status)
         .add("winner" -> winner)

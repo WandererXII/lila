@@ -6,7 +6,7 @@ object BuildSettings {
   import Dependencies._
 
   val lilaVersion        = "3.0"
-  val globalScalaVersion = "2.13.4"
+  val globalScalaVersion = "2.13.6"
 
   val useEpoll = sys.props.get("epoll").fold(false)(_.toBoolean)
   if (useEpoll) println("--- epoll build ---")
@@ -21,7 +21,8 @@ object BuildSettings {
       sources in (Compile, doc) := Seq.empty,
       publishArtifact in (Compile, packageDoc) := false,
       // disable publishing the main sources jar
-      publishArtifact in (Compile, packageSrc) := false
+      publishArtifact in (Compile, packageSrc) := false,
+      javaOptions ++= Seq("-Xms64m", "-Xmx256m")
     )
 
   def defaultLibs: Seq[ModuleID] =

@@ -1,6 +1,6 @@
 package lila.study
 
-import shogi.format.pgn.Glyphs
+import shogi.format.kif.Glyphs
 import shogi.format.{ FEN, Forsyth, Uci, UciCharPair }
 import play.api.libs.json._
 import scala.concurrent.duration._
@@ -141,7 +141,7 @@ object ServerEval {
     private def makeBranch(g: shogi.Game, m: Uci.WithSan) =
       Node(
         id = UciCharPair(m.uci),
-        ply = g.turns,
+        ply = g.plies,
         move = m,
         fen = FEN(Forsyth >> g),
         check = g.situation.check,
