@@ -19,7 +19,8 @@ case class Entry(
     opponentStrength: RelativeStrength,
     opponentCastling: Castling,
     moves: List[Move],
-    queenTrade: QueenTrade,
+    bishopTrade: BishopTrade,
+    rookTrade: RookTrade,
     result: Result,
     termination: Termination,
     ratingDiff: Int,
@@ -48,7 +49,8 @@ case object Entry {
     val opponentCastling         = "oc"
     val moves: String            = "m"
     def moves(f: String): String = s"$moves.$f"
-    val queenTrade               = "q"
+    val bishopTrade              = "bt"
+    val rookTrade                = "rt"
     val result                   = "r"
     val termination              = "t"
     val ratingDiff               = "rd"
@@ -143,27 +145,42 @@ object Phase {
 
 sealed abstract class Castling(val id: Int, val name: String)
 object Castling {
-  object Kingside  extends Castling(1, "Kingside castling")
-  object Queenside extends Castling(2, "Queenside castling")
+  object Leftside  extends Castling(1, "Left-side castling")
+  object Rightside extends Castling(2, "Right-side castling")
   object None      extends Castling(3, "No castling")
-  val all = List(Kingside, Queenside, None)
+  val all = List(Leftside, Rightside, None)
   val byId = all map { p =>
     (p.id, p)
   } toMap
   def fromMoves(moves: Iterable[String]) =
-    moves.find(_ startsWith "O") match {
-      case Some("O-O")   => Kingside
-      case Some("O-O-O") => Queenside
-      case _             => None
+    // Finds the first king move
+    moves.find(_ startsWith "K") match {
+      case Some("Kd1") => Leftside
+      case Some("Kd2") => Leftside
+      case Some("Kf9") => Leftside
+      case Some("Kf8") => Leftside
+      case Some("Kd8") => Rightside
+      case Some("Kd9") => Rightside
+      case Some("Kf1") => Rightside
+      case Some("Kf2") => Rightside
+      case _           => None
     }
 }
 
-sealed abstract class QueenTrade(val id: Boolean, val name: String)
-object QueenTrade {
-  object Yes extends QueenTrade(true, "Queen trade")
-  object No  extends QueenTrade(false, "No queen trade")
+sealed abstract class BishopTrade(val id: Boolean, val name: String)
+object BishopTrade {
+  object Yes extends BishopTrade(true, "Bishop trade")
+  object No  extends BishopTrade(false, "No bishop trade")
   val all                           = List(Yes, No)
-  def apply(v: Boolean): QueenTrade = if (v) Yes else No
+  def apply(v: Boolean): BishopTrade = if (v) Yes else No
+}
+
+sealed abstract class RookTrade(val id: Boolean, val name: String)
+object RookTrade {
+  object Yes extends RookTrade(true, "Rook trade")
+  object No  extends RookTrade(false, "No rook trade")
+  val all                           = List(Yes, No)
+  def apply(v: Boolean): RookTrade = if (v) Yes else No
 }
 
 sealed abstract class RelativeStrength(val id: Int, val name: String)
