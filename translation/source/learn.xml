@@ -11,6 +11,7 @@
 	<string name="theIntroduction">Introduction</string>
 	<string name="introBasics">Let's learn some basics.</string>
 	<string name="introIntro">Your journey begins here.</string>
+    <string name="clickHereAfterYouveChosen">Click here after you've chosen the piece design you like.</string>
 	<string name="choosePieceDesign">It's important that you can tell your pieces apart, so make sure you choose the right piece set.
 To do that click on the cog wheel or your username(top right corner) and then click on 'piece set'.</string>
 	<string name="promotionZone">When some of your pieces reach or leave the first three ranks in your opponent's territory you can choose to promote your piece and make it stronger.</string>
@@ -88,7 +89,14 @@ To do that click on the cog wheel or your username(top right corner) and then cl
 	<string name="takeTheBlackPieces">Take the black pieces!</string>
 	<string name="takeTheBlackPiecesAndDontLoseYours">Take the black pieces!
 And don't lose yours.</string>
+	<string name="takeTheEnemyPiecesAndDontLoseYours">Take the enemy pieces!
+And don't lose yours.</string>
 	<string name="captureComplete">Congratulations! You know how to fight with shogi pieces!</string>
+	<string name="pieceDrops">Piece drops</string>
+	<string name="reuseCapturedPieces">Reuse captured pieces!</string>
+	<string name="dropIntro">Once again, capture all the opponent's pieces, without losing yours!</string>
+	<string name="capturedPiecesCanBeDropped">Captured pieces can be dropped back on the board on your turn!</string>
+    <string name="youCannotHaveTwoUnpromotedPawns">You cannot have two unpromoted pawns in the same file.</string>
 	<string name="protection">Protection</string>
 	<string name="keepYourPiecesSafe">Keep your pieces safe</string>
 	<string name="protectionIntro">Identify the pieces your opponent attacks, and defend them!</string>
@@ -97,6 +105,8 @@ And don't lose yours.</string>
 Escape the threat!</string>
 	<string name="noEscape">There is no escape,
 but you can defend!</string>
+    <string name="makeSureAllSafe">Make sure all your pieces are safe!</string>
+    <string name="dontForgetYouCanDropToDefend">Don’t forget you can drop pieces to defend!</string>
 	<string name="dontLetThemTakeAnyUndefendedPiece">Don't let them take
 any undefended piece!</string>
 	<string name="combat">Combat</string>
@@ -112,6 +122,7 @@ in one move!</string>
 	<string name="outOfCheck">Out of check</string>
 	<string name="defendYourKing">Defend your king</string>
 	<string name="outOfCheckIntro">You are in check! You must escape or block the attack.</string>
+    <string name="ifYourKingIsAttacked">If your king is attacked, you must deal with the attack.</string>
 	<string name="escapeWithTheKing">Escape with the king!</string>
 	<string name="theKingCannotEscapeButBlock">The king cannot escape,
 but you can block the attack!</string>
@@ -119,14 +130,21 @@ but you can block the attack!</string>
 by taking the attacking piece.</string>
 	<string name="thisKnightIsCheckingThroughYourDefenses">This knight is checking
 through your defences!</string>
+    <string name="getOutOfCheck">Get out of check!</string>
+    <string name="watchOutForYourOpponentsReply">Watch out for your opponent's reply!</string>
 	<string name="escapeOrBlock">Escape with the king
 or block the attack!</string>
 	<string name="outOfCheckComplete">Congratulations! Your king can never be taken, make sure you can defend against a check!</string>
 	<string name="mateInOne">Mate in one</string>
 	<string name="defeatTheOpponentsKing">Defeat the opponent's king</string>
 	<string name="mateInOneIntro">You win when your opponent cannot defend against a check.</string>
+    <string name="toWinInShogi">To win in shogi, check your opponent's king such that they cannot defend. This is mate, or tsume.</string>
+    <string name="dropsCommonDeliverMate">Drops are a very common way to deliver mate.</string>
 	<string name="attackYourOpponentsKing">Attack your opponent's king
 in a way that cannot be defended!</string>
+    <string name="chooseYourPieceCarefully">Choose your piece carefully!</string>
+    <string name="mateWithADroppedPawnIs">Mate with a dropped pawn is illegal - in a real game you would be forfeited!</string>
+    <string name="mateWithAPushedPawnIs">Mate with a pushed pawn is fine.</string>
 	<string name="mateInOneComplete">Congratulations! That is how you win shogi games!</string>
 	<string name="intermediate">Intermediate</string>
 	<string name="boardSetup">Board setup</string>
