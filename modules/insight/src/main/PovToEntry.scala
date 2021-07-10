@@ -161,12 +161,25 @@ final private class PovToEntry(
     s.stdDev.map { _ / s.mean }
   }
 
-  private def queenTrade(from: RichPov) =
-    QueenTrade {
+  private def bishopTrade(from: RichPov) =
+    BishopTrade {
       from.division.end.fold(from.boards.last.some)(from.boards.toList.lift) match {
         case Some(board) =>
           shogi.Color.all.forall { color =>
-            !board.hasPiece(shogi.Piece(color, shogi.Lance))
+            !board.hasPiece(shogi.Piece(color, shogi.Bishop))
+          }
+        case _ =>
+          logger.warn(s"https://lishogi.org/${from.pov.gameId} missing endgame board")
+          false
+      }
+    }
+
+  private def rookTrade(from: RichPov) =
+    RookTrade {
+      from.division.end.fold(from.boards.last.some)(from.boards.toList.lift) match {
+        case Some(board) =>
+          shogi.Color.all.forall { color =>
+            !board.hasPiece(shogi.Piece(color, shogi.Rook))
           }
         case _ =>
           logger.warn(s"https://lishogi.org/${from.pov.gameId} missing endgame board")
@@ -196,7 +209,8 @@ final private class PovToEntry(
       opponentStrength = RelativeStrength(opRating - myRating),
       opponentCastling = Castling.fromMoves(game pgnMoves !pov.color),
       moves = makeMoves(from),
-      queenTrade = queenTrade(from),
+      bishopTrade = bishopTrade(from),
+      rookTrade = rookTrade(from),
       result = game.winnerUserId match {
         case None                 => Result.Draw
         case Some(u) if u == myId => Result.Win

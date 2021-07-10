@@ -150,13 +150,22 @@ object Dimension {
         raw("The side your opponent castled on during the game: kingside, queenside, or none.")
       )
 
-  case object QueenTrade
-      extends Dimension[QueenTrade](
-        "queenTrade",
-        "Queen trade",
-        F.queenTrade,
+  case object BishopTrade
+      extends Dimension[BishopTrade](
+        "bishopTrade",
+        "Bishop trade",
+        F.bishopTrade,
         Game,
-        raw("Whether queens were traded before the endgame or not.")
+        raw("Whether bishops were traded before the endgame or not.")
+      )
+
+  case object RookTrade
+      extends Dimension[RookTrade](
+        "rookTrade",
+        "Rook trade",
+        F.rookTrade,
+        Game,
+        raw("Whether rooks were traded before the endgame or not.")
       )
 
   case object MaterialRange
@@ -208,7 +217,8 @@ object Dimension {
       case PieceRole               => shogi.Role.all.reverse
       case MovetimeRange           => lila.insight.MovetimeRange.all
       case MyCastling | OpCastling => lila.insight.Castling.all
-      case QueenTrade              => lila.insight.QueenTrade.all
+      case BishopTrade             => lila.insight.BishopTrade.all
+      case RookTrade               => lila.insight.RookTrade.all
       case MaterialRange           => lila.insight.MaterialRange.all
       case Blur                    => lila.insight.Blur.all
       case TimeVariance            => lila.insight.TimeVariance.all
@@ -228,7 +238,8 @@ object Dimension {
       case PieceRole               => shogi.Role.all.find(_.name == key)
       case MovetimeRange           => key.toIntOption flatMap lila.insight.MovetimeRange.byId.get
       case MyCastling | OpCastling => key.toIntOption flatMap lila.insight.Castling.byId.get
-      case QueenTrade              => lila.insight.QueenTrade(key == "true").some
+      case BishopTrade             => lila.insight.BishopTrade(key == "true").some
+      case RookTrade               => lila.insight.RookTrade(key == "true").some
       case MaterialRange           => key.toIntOption flatMap lila.insight.MaterialRange.byId.get
       case Blur                    => lila.insight.Blur(key == "true").some
       case TimeVariance            => key.toFloatOption map lila.insight.TimeVariance.byId
@@ -255,7 +266,8 @@ object Dimension {
       case PieceRole               => v.name
       case MovetimeRange           => v.id
       case MyCastling | OpCastling => v.id
-      case QueenTrade              => v.id
+      case BishopTrade             => v.id
+      case RookTrade               => v.id
       case MaterialRange           => v.id
       case Blur                    => v.id
       case TimeVariance            => v.id
@@ -275,7 +287,8 @@ object Dimension {
       case PieceRole               => JsString(v.toString)
       case MovetimeRange           => JsString(v.name)
       case MyCastling | OpCastling => JsString(v.name)
-      case QueenTrade              => JsString(v.name)
+      case BishopTrade             => JsString(v.name)
+      case RookTrade               => JsString(v.name)
       case MaterialRange           => JsString(v.name)
       case Blur                    => JsString(v.name)
       case TimeVariance            => JsString(v.name)

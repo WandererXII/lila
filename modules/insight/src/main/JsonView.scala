@@ -43,7 +43,8 @@ final class JsonView {
           openingJson,
           Json.toJson(D.MyCastling: Dimension[_]),
           Json.toJson(D.OpCastling: Dimension[_]),
-          Json.toJson(D.QueenTrade: Dimension[_])
+          Json.toJson(D.BishopTrade: Dimension[_]),
+          Json.toJson(D.RookTrade: Dimension[_])
         )
       ),
       Categ(

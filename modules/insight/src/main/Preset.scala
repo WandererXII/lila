@@ -77,22 +77,32 @@ object Preset {
       Question(D.Phase, M.Opportunism, Nil)
     ),
     Preset(
-      "Do I gain rating when I don't castle kingside?",
+      "Do I gain rating when I don't castle left-side?",
       Question(
         D.Perf,
         M.RatingDiff,
         List(
-          Filter(D.MyCastling, List(Castling.Queenside, Castling.None))
+          Filter(D.MyCastling, List(Castling.Rightside, Castling.None))
         )
       )
     ),
     Preset(
-      "When I trade queens, how do games end?",
+      "When I trade bishops, how do games end?",
       Question(
         D.Perf,
         M.Result,
         List(
-          Filter(D.QueenTrade, List(QueenTrade.Yes))
+          Filter(D.BishopTrade, List(BishopTrade.Yes))
+        )
+      )
+    ),
+    Preset(
+      "When I trade rooks, how do games end?",
+      Question(
+        D.Perf,
+        M.Result,
+        List(
+          Filter(D.RookTrade, List(RookTrade.Yes))
         )
       )
     ),
